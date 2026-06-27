@@ -11,10 +11,10 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Set up Python 3.10
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v5
         with:
           python-version: '3.10'
 
@@ -36,7 +36,7 @@ jobs:
           convert -size 1080x1920 xc:"#121212" assets/default_presplash.png
 
       - name: Cache Buildozer directory
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: .buildozer
           key: ${{ runner.os }}-buildozer-${{ hashFiles('buildozer.spec') }}
@@ -50,7 +50,7 @@ jobs:
         run: buildozer android debug
 
       - name: Upload APK Artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: vault-apk
           path: bin/*.apk
